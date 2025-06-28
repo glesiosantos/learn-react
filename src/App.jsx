@@ -1,15 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {v4} from 'uuid'
 
 import AddTasks from './components/AddTask'
 import Tasks from './components/Task'
 
 function App() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || [])
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   function onAddTaskToList(title, description) {
     const newTask = {
-      id: v4(),
+      id: v4().replaceAll('-',''),
       title,
       description,
       isCompleted: false
