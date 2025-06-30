@@ -1,5 +1,7 @@
 import { Proportions } from "lucide-react"
 import { useState } from "react"
+import Input from "./Input"
+import FormButton from "./FormButton"
 
 function AddTasks({onAddTaskToList}) {
 
@@ -8,17 +10,16 @@ function AddTasks({onAddTaskToList}) {
 
   return (
     <div className="space-y-4 p-6 bg-slate-200 rounded-md shadow flex flex-col my-4">
-      <input type="text"
+      <Input type="text"
         value={title} 
         onChange={(event) => setTitle(event.target.value)}
-        placeholder="Digita o titulo da tarefa" 
-        className="border border-slate-300 outline-slade-300 px-4 py-2 rounded-md" />
+        placeholder="Digita o titulo da tarefa" />
       <textarea 
         value={description}
         onChange={(event) => setDescription(event.target.value)}
         rows="3" 
         placeholder="Descrição da tarefa" className="border border-slate-300 outline-slade-300 px-4 py-2 rounded-md"></textarea>
-      <button 
+      <FormButton 
         onClick={() => {
 
           if (!title.trim() || !description.trim()) {
@@ -29,8 +30,7 @@ function AddTasks({onAddTaskToList}) {
             setDescription('')
           }
 
-        }}
-        className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium">Adicionar</button>
+        }}>Adicionar</FormButton>
     </div>
   )
 }
